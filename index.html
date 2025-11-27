@@ -1,148 +1,442 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lista de Invitados - Alamo's Club</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alamo's Club | Registro</title>
+
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      background:#111; 
-      color:#fff; 
-      display:flex; 
-      align-items:center; 
-      justify-content:center; 
-      min-height:100vh; 
-      margin:0; 
-      flex-direction:column;
-    }
-    .container { 
-      background: rgba(0,0,0,0.75); 
-      padding:28px; 
-      border-radius:12px; 
-      width:95%; 
-      max-width:420px; 
-      box-shadow:0 6px 30px rgba(0,0,0,0.6); 
-      text-align:center; 
-      position:relative; 
-    }
-    .logo { 
-      width:80px; 
-      height:80px; 
-      object-fit:contain; 
-      margin:0 auto 8px; 
-      display:block; 
-    }
-    input, button { 
-      width:100%; 
-      padding:12px; 
-      margin-top:10px; 
-      border-radius:8px; 
-      border:none; 
-      font-size:16px; 
-      box-sizing:border-box; 
-    }
-    button { 
-      background:#e91e63; 
-      color:#fff; 
-      font-weight:700; 
-      cursor:pointer; 
-    }
-    button:hover { 
-      opacity:0.95; 
-    }
-    #countdown { 
-      color:#f1c40f; 
-      margin-top:6px; 
-      font-weight:600; 
-    }
-    #closed { 
-      color:#ff4d4d; 
-      display:none; 
-      margin-top:10px; 
-    }
-    .small { 
-      font-size:13px; 
-      color:#ccc; 
-      margin-top:8px; 
-    }
-    .subtitle { 
-      font-size:18px; 
-      color:#f39c12; 
-      margin:6px 0; 
-      font-weight:600; 
+    :root {
+      --black:#000;
+      --white:#fff;
+      --gray:#cfcfcf;
+      --gray-dark:#1a1a1a;
+      --border:#2a2a2a;
+      --muted:#9b9b9b;
+      --radius:14px;
     }
 
-    /* Estilos pie de página de redes sociales */
-    .social-footer {
-      width:100%;
-      text-align:center;
-      margin-top:20px;
+    body {
+      margin:0;
+      background:var(--black);
+      color:var(--white);
+      font-family: "Inter", system-ui, sans-serif;
+      line-height:1.5;
     }
-    .social-footer a {
-      margin: 0 10px;
-      display: inline-block;
+
+    /* HEADER CON DOS LOGOS Y TEXTO CENTRAL */
+    header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:20px 30px;
+      border-bottom:1px solid var(--border);
+      background:var(--black);
     }
-    .social-footer img {
-      width:60px;
-      height:60px;
+
+    .header-logo {
+      height:70px;
       object-fit:contain;
+    }
+
+    .header-center {
+      text-align:center;
+      flex:1;
+      margin:0 20px;
+    }
+
+    .header-title {
+      font-size:20px;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+    }
+
+    .header-subtitle {
+      font-size:13px;
+      color:var(--muted);
+      margin-top:4px;
+    }
+
+    @media (max-width:700px){
+      header {
+        padding:16px 16px;
+      }
+      .header-logo {
+        height:52px;
+      }
+      .header-title {
+        font-size:16px;
+      }
+      .header-subtitle {
+        font-size:12px;
+      }
+    }
+
+    /* CONTENIDO PRINCIPAL */
+    main {
+      max-width:1100px;
+      margin:auto;
+      padding:32px 20px;
+    }
+
+    /* BLOQUE: DESCRIPCIÓN */
+    .about {
+      background:var(--gray-dark);
+      padding:26px 28px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      margin-bottom:32px;
+    }
+
+    .about-title {
+      font-size:26px;
+      margin:0 0 8px;
+    }
+
+    .about-text {
+      color:var(--muted);
+      font-size:15px;
+      margin:4px 0 10px;
+    }
+
+    /* FORM + GALERÍA LAYOUT */
+    .grid {
+      display:grid;
+      grid-template-columns:0.8fr 1.2fr;
+      gap:28px;
+    }
+
+    @media (max-width:800px){
+      .grid { grid-template-columns:1fr; }
+    }
+
+    /* FORMULARIO */
+    .form-card {
+      background:var(--gray-dark);
+      padding:26px 28px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+    }
+
+    .form-card h2 {
+      margin:0;
+      font-size:22px;
+    }
+
+    label {
+      font-size:13px;
+      color:var(--muted);
+      margin-top:16px;
+      display:block;
+      margin-bottom:6px;
+    }
+
+    input {
+      width:100%;
+      padding:12px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:#0f0f0f;
+      color:var(--white);
+      font-size:15px;
+      outline:none;
+    }
+
+    input:focus {
+      border-color:var(--gray);
+    }
+
+    button {
+      width:100%;
+      padding:12px;
+      margin-top:16px;
+      border-radius:var(--radius);
+      border:none;
+      background:var(--white);
+      color:var(--black);
+      font-weight:600;
+      font-size:15px;
       cursor:pointer;
-      transition: transform 0.2s;
+      transition:0.2s ease;
     }
+
+    button:hover {
+      opacity:0.9;
+      transform:translateY(-1px);
+    }
+
+    #countdown {
+      margin-top:10px;
+      color:var(--gray);
+      font-size:14px;
+      font-weight:500;
+    }
+
+    #closed {
+      display:none;
+      margin-top:14px;
+      color:#ff6b6b;
+      font-size:14px;
+    }
+
+    /* GALERÍA / CARRUSEL */
+    .section-title {
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:0.12em;
+      margin:0 0 10px;
+      color:var(--gray);
+    }
+
+    .gallery-slider {
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .gallery-nav {
+      background:transparent;
+      border:1px solid var(--border);
+      color:var(--gray);
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      font-size:18px;
+      padding:0;
+      flex-shrink:0;
+    }
+
+    .gallery-nav:hover {
+      border-color:var(--gray);
+      color:var(--white);
+    }
+
+    .gallery-window {
+      overflow:hidden;
+      flex:1;
+    }
+
+    .gallery-track {
+      display:flex;
+      transition:transform 0.4s ease;
+    }
+
+    .gallery-slide {
+      min-width:100%;
+      display:flex;
+      gap:18px;
+    }
+
+    .gallery-item {
+      flex:1;
+      border-radius:var(--radius);
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:#0f0f0f;
+      transition:0.2s ease;
+    }
+
+    .gallery-item img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .gallery-item:hover {
+      transform:scale(1.02);
+    }
+
+    /* UBICACIÓN */
+    .location {
+      margin-top:40px;
+      background:var(--gray-dark);
+      padding:22px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+    }
+
+    .location h3 {
+      margin:0 0 12px;
+      font-size:18px;
+    }
+
+    .map-frame {
+      width:100%;
+      height:260px;
+      border:none;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+    }
+
+    /* FOOTER */
+    footer {
+      padding:40px 20px;
+      margin-top:40px;
+      border-top:1px solid var(--border);
+      text-align:center;
+      color:var(--muted);
+    }
+
+    .footer-title {
+      font-size:18px;
+      font-weight:600;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+
+    .social-footer {
+      display:flex;
+      justify-content:center;
+      gap:18px;
+    }
+
+    .social-footer img {
+      width:36px;
+      opacity:0.9;
+      transition:0.2s ease;
+    }
+
     .social-footer img:hover {
-      transform: scale(2);
+      opacity:1;
+      transform:scale(1.12); /* ← efecto de “crecer” al pasar el mouse */
     }
+
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <img src="LOGO.PNG" alt="Logo" class="logo" />
-    <h2>🎟️ Lista de Invitados 🎟️</h2>
-    <div class="subtitle">☕Coffe Session☕</div>
-   <p>
-    ⚠️ Cupo limitado ⚠️
-  <br>
-  Anota tu nombre completo y participa para obtener tu acceso a: <br><b>Alamo's Club X La Zarzita</b>.
-  <br>
- 
-</p>
 
-    <div id="countdown"></div>
+  <!-- HEADER: LOGO IZQ + TEXTO + LOGO DER -->
+  <header>
+    <img src="LOGO.PNG" class="header-logo" alt="Alamo's Club logo izquierda">
 
-    <form id="guestForm">
-      <input id="nombre" type="text" placeholder="Nombre completo" required autocomplete="off" />
-      <button type="submit">Registrar</button>
-    </form>
-
-    <div id="closed">🚫 Registro cerrado. Mantente atento a próximas dinámicas.</div>
-    <div class="small">
-       Si eres seleccionado, recibirás todos los detalles del evento (hora, lugar detalles, etc) directamente por mensaje 📩.<br> 
-      🔒¡Tu privacidad está protegida!. 🔒
+    <div class="header-center">
+      <div class="header-title">ALAMO'S CLUB</div>
+      <div class="header-title">PRODUCCIONES</div>
     </div>
-  </div>
 
-  <!-- Footer de redes sociales centrado -->
-  <div class="social-footer">
-    <a href="https://www.instagram.com/_alamo.sclub_?igsh=ZmcweHk1YzYxMjZp&utm_source=qr" target="_blank">
-      <img src="instagram.png" alt="Instagram">
-    </a>
-    <a href="https://chat.whatsapp.com/JWL6ZC7vLpVCy5eJIZPHDa?mode=wwc" target="_blank">
-      <img src="whatsapp.png" alt="WhatsApp">
-    </a>
-    <a href="https://www.tiktok.com/@alamo.sclub?_t=ZS-90V2bZwxppv&_r=1" target="_blank">
-      <img src="tiktok.png" alt="TikTok">
-    </a>
-  </div>
+    <img src="LOGO.PNG" class="header-logo" alt="Alamo's Club logo derecha">
+  </header>
 
+  <main>
+
+    <!-- DESCRIPCIÓN -->
+    <section class="about">
+      <h1 class="about-title">¿Quiénes somos?</h1>
+      <p class="about-text">
+        Proyecto musical que une sesiones íntimas, DJs emergentes y experiencias cuidadas en espacios temporales.
+      </p>
+      <p class="about-text">
+        Creamos eventos donde iluminación, música y ambiente premium se conectan.  
+        Por ahora nos movemos entre spots de la ciudad mientras construimos comunidad y posicionamiento.
+      </p>
+    </section>
+
+    <!-- FORM + GALERÍA -->
+    <section class="grid">
+
+      <!-- FORMULARIO -->
+      <div class="form-card">
+        <h2>Registro</h2>
+        <p style="color:var(--muted); font-size:14px; margin:4px 0 12px;">
+          Cupo limitado para la siguiente sesión.
+        </p>
+
+        <form id="guestForm">
+          <label>Nombre completo</label>
+          <input id="nombre" type="text" required autocomplete="off" placeholder="Escribe tu nombre">
+          <button type="submit">Registrar</button>
+        </form>
+
+        <div id="countdown"></div>
+        <div id="closed">Registro cerrado.</div>
+      </div>
+
+      <!-- GALERÍA CARRUSEL -->
+      <div>
+        <div class="section-title">Galería</div>
+
+        <div class="gallery-slider">
+          <button class="gallery-nav" id="galleryPrev">&#10094;</button>
+
+          <div class="gallery-window">
+            <div class="gallery-track" id="galleryTrack">
+
+              <!-- Slide 1 -->
+              <div class="gallery-slide">
+                <div class="gallery-item"><img src="evento1.png" alt="Evento 1"></div>
+                <div class="gallery-item"><img src="evento2.png" alt="Evento 2"></div>
+                <div class="gallery-item"><img src="evento3.png" alt="Evento 3"></div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="gallery-slide">
+                <div class="gallery-item"><img src="evento4.png" alt="Evento 4"></div>
+                <div class="gallery-item"><img src="evento5.png" alt="Evento 5"></div>
+                <div class="gallery-item"><img src="evento6.png" alt="Evento 6"></div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="gallery-slide">
+                <div class="gallery-item"><img src="evento7.png" alt="Evento 7"></div>
+                <div class="gallery-item"><img src="evento8.png" alt="Evento 8"></div>
+                <div class="gallery-item"><img src="evento9.png" alt="Evento 9"></div>
+              </div>
+
+              <!-- Slide 4 -->
+              <div class="gallery-slide">
+                <div class="gallery-item"><img src="evento10.png" alt="Evento 10"></div>
+                <div class="gallery-item"><img src="evento11.png" alt="Evento 11"></div>
+                <div class="gallery-item"><img src="evento12.png" alt="Evento 12"></div>
+              </div>
+
+            </div>
+          </div>
+
+          <button class="gallery-nav" id="galleryNext">&#10095;</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- UBICACIÓN -->
+    <section class="location">
+      <h3>Ubicación de la sesión</h3>
+      <iframe
+        class="map-frame"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3761.6341900798134!2d-99.09820719999999!3d19.471332500000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1fb6fb1a358e5%3A0xff9b5f8584b3dfbc!2sLA%20ZARZITA%20RESTAURANTE!5e0!3m2!1ses!2smx!4v1764205459970!5m2!1ses!2smx"
+        loading="lazy">
+      </iframe>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-title">Síguenos</div>
+    <div class="social-footer">
+      <a href="https://www.instagram.com/_alamo.sclub_/" target="_blank">
+        <img src="instagram.png" alt="Instagram">
+      </a>
+      <a href="https://chat.whatsapp.com/JWL6ZC7vLpVCy5eJIZPHDa" target="_blank">
+        <img src="whatsapp.png" alt="WhatsApp">
+      </a>
+      <a href="https://www.tiktok.com/@alamo.sclub" target="_blank">
+        <img src="tiktok.png" alt="TikTok">
+      </a>
+    </div>
+  </footer>
+
+  <!-- FIREBASE + LÓGICA -->
   <script type="module">
-    // ---------- IMPORTS (Firebase modular SDK) ----------
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
-    // -------------------------------
-    // FIREBASE CONFIG
-    // -------------------------------
     const firebaseConfig = {
       apiKey: "AIzaSyDLW12w5ZznypXJYMrTNouttdX0vrG6Bzg",
       authDomain: "alamos-club-d1847.firebaseapp.com",
@@ -153,77 +447,113 @@
       measurementId: "G-MNFMT9QLBN"
     };
 
-    // Inicializa Firebase y Firestore
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Formulario
     const form = document.getElementById('guestForm');
     const nombreEl = document.getElementById('nombre');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const nombre = nombreEl.value.trim();
+      if (!nombre) return alert('Escribe un nombre.');
 
-      if (!nombre) {
-        alert('⚠️ Escribe un nombre por favor.');
-        return;
-      }
-
-      // Normalizamos el nombre para comparar (sin espacios extras ni mayúsculas)
       const nombreNormalizado = nombre.toLowerCase().replace(/\s+/g, ' ').trim();
 
       try {
-        // Trae todos los nombres de la colección "invitados"
         const snapshot = await getDocs(collection(db, 'invitados'));
-        const nombresExistentes = snapshot.docs.map(doc => doc.data().nombre.toLowerCase().replace(/\s+/g, ' ').trim());
+        const existentes = snapshot.docs.map(d =>
+          (d.data().nombre || '').toLowerCase().replace(/\s+/g, ' ').trim()
+        );
 
-        // Verifica si el nombre ya existe
-        if (nombresExistentes.includes(nombreNormalizado)) {
-          alert('🚫 Este nombre ya está registrado.');
+        if (existentes.includes(nombreNormalizado)) {
+          alert('Este nombre ya está registrado.');
           form.reset();
           return;
         }
 
-        // Guarda el nuevo registro
         await addDoc(collection(db, 'invitados'), {
           nombre: nombreNormalizado,
           createdAt: serverTimestamp()
         });
 
-        alert('🎉 Registro guardado correctamente 🎉');
+        alert('Registro guardado 👍');
         form.reset();
+
       } catch (err) {
-        console.error('Error guardando en Firestore:', err);
-        alert('❌ Error al guardar. Revisa la consola.');
+        console.error(err);
+        alert('Error al registrar.');
       }
     });
 
-    // Contador (24 horas)
+    // COUNTDOWN
     const countdownEl = document.getElementById('countdown');
     const closedEl = document.getElementById('closed');
     let endTime = new Date("Nov 28, 2025 15:00:00").getTime();
 
-
-    const timer = setInterval(() => {
+    setInterval(() => {
       const now = Date.now();
-      const distance = endTime - now;
-      if (distance > 0) {
-        if (distance > 0) {
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  countdownEl.textContent = `⏳ Tiempo restante: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
+      const diff = endTime - now;
 
+      if (diff > 0) {
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+        const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+        const s = Math.floor((diff % (1000*60)) / 1000);
+        countdownEl.textContent = `Tiempo restante: ${d}d ${h}h ${m}m ${s}s`;
       } else {
-        clearInterval(timer);
-        form.style.display = 'none';
-        countdownEl.style.display = 'none';
-        closedEl.style.display = 'block';
+        form.style.display='none';
+        countdownEl.style.display='none';
+        closedEl.style.display='block';
       }
     }, 1000);
+
+    // GALERÍA CARRUSEL (3 FOTOS POR VISTA, 4 SLIDES, LOOP)
+    const track = document.getElementById('galleryTrack');
+    const slides = Array.from(track.querySelectorAll('.gallery-slide'));
+    const prevBtn = document.getElementById('galleryPrev');
+    const nextBtn = document.getElementById('galleryNext');
+    const totalSlides = slides.length;
+    let currentSlide = 0;
+
+    function updateGallery() {
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateGallery();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateGallery();
+    });
+
+    // Swipe en móvil
+    const galleryWindow = document.querySelector('.gallery-window');
+    let startX = 0;
+
+    galleryWindow.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    galleryWindow.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = endX - startX;
+      if (Math.abs(diff) > 40) {
+        if (diff < 0) {
+          // swipe izquierda -> siguiente
+          currentSlide = (currentSlide + 1) % totalSlides;
+        } else {
+          // swipe derecha -> anterior
+          currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        }
+        updateGallery();
+      }
+    }, { passive: true });
+
   </script>
+
 </body>
 </html>
