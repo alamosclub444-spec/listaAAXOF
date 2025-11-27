@@ -295,9 +295,9 @@
       gap:18px;
     }
 
-    /* ← AQUI AGRANDAMOS LOS ICONOS Y DEVOLVEMOS EL EFECTO */
+    /* ICONOS REDES */
     .social-footer img {
-      width:80px;          /* antes 36px */
+      width:80px;
       opacity:0.9;
       transition:0.2s ease;
     }
@@ -344,8 +344,9 @@
       <!-- FORMULARIO -->
       <div class="form-card">
         <h2>Registro</h2>
-        <p style="color:var(--muted); font-size:14px; margin:4px 0 12px;">
-          Cupo limitado para la siguiente sesión.
+        <!-- SOLO le agrego un id a este texto -->
+        <p id="registroContext" style="color:var(--muted); font-size:14px; margin:4px 0 12px;">
+          Cupo limitado para la siguiente sesion.
         </p>
 
         <form id="guestForm">
@@ -355,6 +356,10 @@
         </form>
 
         <div id="countdown"></div>
+
+        <!-- NUEVO: texto dinámico debajo del contador -->
+        <p id="infoRegistro" style="color:var(--gray); font-size:13px; margin:6px 0 0;"></p>
+
         <div id="closed">Registro cerrado.</div>
       </div>
 
@@ -478,7 +483,7 @@
           createdAt: serverTimestamp()
         });
 
-        alert('Registro guardado 👍');
+        alert('Registro guardado');
         form.reset();
 
       } catch (err) {
@@ -554,6 +559,28 @@
       }
     }, { passive: true });
 
+    // LÓGICA TEXTO SEGÚN "SESIÓN" O "EVENTO"
+    const registroContext = document.getElementById('registroContext');
+    const infoRegistro = document.getElementById('infoRegistro');
+
+    function actualizarInfoRegistro() {
+      if (!registroContext || !infoRegistro) return;
+
+      const texto = registroContext.textContent.toLowerCase();
+
+      if (texto.includes('sesión') || texto.includes('sesion')) {
+        infoRegistro.textContent =
+          'Tu registro es para participar por un lugar. Si eres seleccionado, recibirás los detalles por mensaje directo.';
+      } else if (texto.includes('evento')) {
+        infoRegistro.textContent =
+          'Tu registro te da acceso sin cover.';
+      } else {
+        infoRegistro.textContent = '';
+      }
+    }
+
+    // Ejecutar al cargar
+    actualizarInfoRegistro();
   </script>
 
 </body>
