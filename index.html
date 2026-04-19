@@ -290,17 +290,32 @@
     }
 
     .social-footer {
-      display:flex;
-      justify-content:center;
-      gap:18px;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; 
+  gap: 16px;
+  margin-top: 10px;
+}
 
     /* ICONOS REDES */
     .social-footer img {
-      width:80px;
-      opacity:0.9;
-      transition:0.2s ease;
-    }
+  width: 55px; /* antes 80px, demasiado grande */
+  max-width: 100%;
+  height: auto;
+  opacity: 0.9;
+  transition: 0.2s ease;
+}
+@media (max-width: 600px) {
+  .social-footer img {
+    width: 45px; /* más compacto en móvil */
+  }
+  
+
+  .footer-title {
+    font-size: 16px;
+  }
+}
 
     .social-footer img:hover {
       opacity:1;
