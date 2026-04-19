@@ -306,9 +306,49 @@
       opacity:1;
       transform:scale(1);
     }
+/* LIGHTBOX */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
 
+.lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
   </style>
 </head>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightboxClose">&times;</span>
+  <img id="lightboxImg" src="">
+</div>
 
 <body>
 
@@ -346,7 +386,7 @@
         <h2>Registro</h2>
         <!-- SOLO le agrego un id a este texto -->
         <p id="registroContext" style="color:var(--muted); font-size:14px; margin:4px 0 12px;">
-          Cupo limitado para la siguiente sesion.
+          Cupo limitado para el siguiente evento.
         </p>
 
         <form id="guestForm">
@@ -412,10 +452,10 @@
 
     <!-- UBICACIÓN -->
     <section class="location">
-      <h3>Ubicación de la sesión</h3>
+      <h3>Ubicación del Evento 30 DE MAYO</h3>
       <iframe
         class="map-frame"
-        src="https://www.google.com/maps/embed?pb=!3m2!1ses!2smx!4v1770870989800!5m2!1ses!2smx!6m8!1m7!1sW3Psbjewti4_1_P8iZB3MQ!2m2!1d19.43547672794466!2d-99.09344338887412!3f331.3168688762239!4f3.6816887375973266!5f0.7820865974627469" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed?pb=!4v1776562092931!6m8!1m7!1sYDjP-rWhR2cvMhYiiMbzZQ!2m2!1d19.44875194527009!2d-99.10989803476265!3f194.7909258245988!4f0.5320206120707951!5f0.7820865974627469" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
         loading="lazy">
       </iframe>
     </section>
@@ -431,6 +471,9 @@
       </a>
       <a href="https://chat.whatsapp.com/JWL6ZC7vLpVCy5eJIZPHDa" target="_blank">
         <img src="whatsapp.png" alt="WhatsApp">
+      </a>
+      <a href="https://www.facebook.com/share/1DqW5BVJxd/?mibextid=wwXIfr" target="_blank">
+        <img src="facebook.png" alt="Instagram">
       </a>
       <a href="https://www.tiktok.com/@alamo.sclub" target="_blank">
         <img src="tiktok.png" alt="TikTok">
@@ -585,6 +628,32 @@
 
     // Ejecutar al cargar
     actualizarInfoRegistro();
+    // LIGHTBOX FUNCIONALIDAD
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxClose = document.getElementById('lightboxClose');
+
+// Detectar TODAS las imágenes de la galería
+const galleryImages = document.querySelectorAll('.gallery-item img');
+
+galleryImages.forEach(img => {
+  img.addEventListener('click', () => {
+    lightbox.classList.add('active');
+    lightboxImg.src = img.src;
+  });
+});
+
+// Cerrar al dar click en X
+lightboxClose.addEventListener('click', () => {
+  lightbox.classList.remove('active');
+});
+
+// Cerrar al dar click fuera de la imagen
+lightbox.addEventListener('click', (e) => {
+  if (e.target !== lightboxImg) {
+    lightbox.classList.remove('active');
+  }
+});
   </script>
 
 </body>
