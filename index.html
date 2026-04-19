@@ -269,7 +269,7 @@
     }
 
     .sessions-logo {
-      height: 80px; /* Ajusta el tamaño de tu logo aquí */
+      height: 90px; /* Cambia este número para hacer el logo más grande */
       object-fit: contain;
       margin-bottom: 10px;
     }
@@ -298,23 +298,11 @@
       position: absolute;
       top: 0;
       left: 0;
-      z-index: 2;
-      transition: opacity 0.4s ease;
+      transition: transform 0.4s ease;
     }
 
     .session-item:hover .session-thumb {
-      opacity: 0; /* Al pasar el mouse, desaparece la imagen y muestra el video */
-    }
-
-    .session-iframe {
-      position: absolute;
-      top: 0; 
-      left: 0;
-      width: 100%; 
-      height: 100%;
-      border: none;
-      z-index: 1;
-      pointer-events: none; /* Crucial para que el clic lo reciba el enlace <a> y te lleve a YouTube */
+      transform: scale(1.05); /* Ligero zoom al pasar el mouse */
     }
 
     /* UBICACIÓN */
@@ -527,30 +515,25 @@
 
       <div class="sessions-grid">
         
-        <a href="https://youtu.be/vVIP96Lq1Ak" target="_blank" class="session-item" data-vid="vVIP96Lq1Ak">
-  <img src="https://img.youtube.com/vi/vVIP96Lq1Ak/maxresdefault.jpg" class="session-thumb" alt="Sesión 1">
-  <iframe class="session-iframe" allow="autoplay; encrypted-media"></iframe>
-</a>
+        <a href="https://youtu.be/vVIP96Lq1Ak" target="_blank" class="session-item">
+          <img src="https://img.youtube.com/vi/vVIP96Lq1Ak/maxresdefault.jpg" class="session-thumb" alt="Sesión 1">
+        </a>
 
-        <a href="https://youtu.be/AIh1SkUzOZc" target="_blank" class="session-item" data-vid="AIh1SkUzOZc">
-  <img src="https://img.youtube.com/vi/AIh1SkUzOZc/maxresdefault.jpg" class="session-thumb" alt="Sesión 2">
-  <iframe class="session-iframe" allow="autoplay; encrypted-media"></iframe>
-</a>
+        <a href="https://youtu.be/AIh1SkUzOZc" target="_blank" class="session-item">
+          <img src="https://img.youtube.com/vi/AIh1SkUzOZc/maxresdefault.jpg" class="session-thumb" alt="Sesión 2">
+        </a>
 
-        <a href="https://youtu.be/D29XEhIl2II" target="_blank" class="session-item" data-vid="D29XEhIl2II">
-  <img src="https://img.youtube.com/vi/D29XEhIl2II/maxresdefault.jpg" class="session-thumb" alt="Sesión 3">
-  <iframe class="session-iframe" allow="autoplay; encrypted-media"></iframe>
-</a>
+        <a href="https://youtu.be/D29XEhIl2II" target="_blank" class="session-item">
+          <img src="https://img.youtube.com/vi/D29XEhIl2II/maxresdefault.jpg" class="session-thumb" alt="Sesión 3">
+        </a>
 
-<a href="https://youtu.be/AaovbGZs754" target="_blank" class="session-item" data-vid="AaovbGZs754">
-  <img src="https://img.youtube.com/vi/AaovbGZs754/maxresdefault.jpg" class="session-thumb" alt="Sesión 4">
-  <iframe class="session-iframe" allow="autoplay; encrypted-media"></iframe>
-</a>
+        <a href="https://youtu.be/AaovbGZs754" target="_blank" class="session-item">
+          <img src="https://img.youtube.com/vi/AaovbGZs754/maxresdefault.jpg" class="session-thumb" alt="Sesión 4">
+        </a>
 
-<a href="https://youtu.be/wjjo0t6-7Ak" target="_blank" class="session-item" data-vid="wjjo0t6-7Ak">
-  <img src="https://img.youtube.com/vi/wjjo0t6-7Ak/maxresdefault.jpg" class="session-thumb" alt="Sesión 5">
-  <iframe class="session-iframe" allow="autoplay; encrypted-media"></iframe>
-</a>
+        <a href="https://youtu.be/wjjo0t6-7Ak" target="_blank" class="session-item">
+          <img src="https://img.youtube.com/vi/wjjo0t6-7Ak/maxresdefault.jpg" class="session-thumb" alt="Sesión 5">
+        </a>
 
       </div>
     </section>
@@ -748,25 +731,6 @@
       }
     });
 
-    // === NUEVO: LÓGICA DE REPRODUCCIÓN AL PASAR EL MOUSE ===
-    const sessionItems = document.querySelectorAll('.session-item');
-
-    sessionItems.forEach(item => {
-      const vidId = item.getAttribute('data-vid');
-      const iframe = item.querySelector('.session-iframe');
-      
-      item.addEventListener('mouseenter', () => {
-        // Carga y reproduce el video (silenciado) solo cuando el mouse pasa por encima
-        if (!iframe.src) {
-          iframe.src = `https://www.youtube.com/embed/${vidId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${vidId}`;
-        }
-      });
-
-      item.addEventListener('mouseleave', () => {
-        // Borra el enlace para detener el video al quitar el mouse
-        iframe.src = '';
-      });
-    });
   </script>
 
 </body>
