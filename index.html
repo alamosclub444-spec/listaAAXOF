@@ -251,6 +251,72 @@
       transform:scale(1.02);
     }
 
+    /* === NUEVO: SESIONES DE YOUTUBE === */
+    .sessions-section {
+      background: var(--gray-dark);
+      padding: 30px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    .sessions-header {
+      text-align: center;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sessions-logo {
+      height: 80px; /* Ajusta el tamaño de tu logo aquí */
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .sessions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .session-item {
+      position: relative;
+      display: block;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 16/9; /* Formato de video ancho */
+      background: #000;
+      cursor: pointer;
+    }
+
+    .session-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      transition: opacity 0.4s ease;
+    }
+
+    .session-item:hover .session-thumb {
+      opacity: 0; /* Al pasar el mouse, desaparece la imagen y muestra el video */
+    }
+
+    .session-iframe {
+      position: absolute;
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%;
+      border: none;
+      z-index: 1;
+      pointer-events: none; /* Crucial para que el clic lo reciba el enlace <a> y te lleve a YouTube */
+    }
+
     /* UBICACIÓN */
     .location {
       margin-top:40px;
@@ -290,84 +356,82 @@
     }
 
     .social-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; 
-  gap: 16px;
-  margin-top: 10px;
-}
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap; 
+      gap: 16px;
+      margin-top: 10px;
+    }
 
     /* ICONOS REDES */
     .social-footer img {
-  width: 55px; /* antes 80px, demasiado grande */
-  max-width: 100%;
-  height: auto;
-  opacity: 0.9;
-  transition: 0.2s ease;
-}
-@media (max-width: 600px) {
-  .social-footer img {
-    width: 45px; /* más compacto en móvil */
-  }
-  
-
-  .footer-title {
-    font-size: 16px;
-  }
-}
+      width: 55px; 
+      max-width: 100%;
+      height: auto;
+      opacity: 0.9;
+      transition: 0.2s ease;
+    }
+    
+    @media (max-width: 600px) {
+      .social-footer img {
+        width: 45px; 
+      }
+      .footer-title {
+        font-size: 16px;
+      }
+    }
 
     .social-footer img:hover {
       opacity:1;
       transform:scale(1);
     }
-/* LIGHTBOX */
-.lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.3s ease;
-}
 
-.lightbox.active {
-  opacity: 1;
-  pointer-events: all;
-}
+    /* LIGHTBOX */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s ease;
+    }
 
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-}
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: all;
+    }
 
-.lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 30px;
-  color: white;
-  cursor: pointer;
-}
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+    }
   </style>
 </head>
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <span class="lightbox-close" id="lightboxClose">&times;</span>
-  <img id="lightboxImg" src="">
-</div>
 
 <body>
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">×</span>
+    <img id="lightboxImg" src="">
+  </div>
 
-  <!-- HEADER: LOGO IZQ + TEXTO + LOGO DER -->
   <header>
     <img src="LOGO.PNG" class="header-logo" alt="Alamo's Club logo izquierda">
 
@@ -381,7 +445,6 @@
 
   <main>
 
-    <!-- DESCRIPCIÓN -->
     <section class="about">
       <h1 class="about-title">¿Quiénes somos?</h1>
       <p class="about-text">
@@ -393,13 +456,10 @@
       </p>
     </section>
 
-    <!-- FORM + GALERÍA -->
     <section class="grid">
 
-      <!-- FORMULARIO -->
       <div class="form-card">
         <h2>Registro</h2>
-        <!-- SOLO le agrego un id a este texto -->
         <p id="registroContext" style="color:var(--muted); font-size:14px; margin:4px 0 12px;">
           Cupo limitado para el siguiente evento.
         </p>
@@ -412,44 +472,38 @@
 
         <div id="countdown"></div>
 
-        <!-- NUEVO: texto dinámico debajo del contador -->
         <p id="infoRegistro" style="color:var(--gray); font-size:13px; margin:6px 0 0;"></p>
 
         <div id="closed">Registro cerrado.</div>
       </div>
 
-      <!-- GALERÍA CARRUSEL -->
       <div>
         <div class="section-title">Galería</div>
 
         <div class="gallery-slider">
-          <button class="gallery-nav" id="galleryPrev">&#10094;</button>
+          <button class="gallery-nav" id="galleryPrev">❮</button>
 
           <div class="gallery-window">
             <div class="gallery-track" id="galleryTrack">
 
-              <!-- Slide 1 -->
               <div class="gallery-slide">
                 <div class="gallery-item"><img src="evento1.png" alt="Evento 1"></div>
                 <div class="gallery-item"><img src="evento2.png" alt="Evento 2"></div>
                 <div class="gallery-item"><img src="evento3.png" alt="Evento 3"></div>
               </div>
 
-              <!-- Slide 2 -->
               <div class="gallery-slide">
                 <div class="gallery-item"><img src="evento4.png" alt="Evento 4"></div>
                 <div class="gallery-item"><img src="evento5.png" alt="Evento 5"></div>
                 <div class="gallery-item"><img src="evento6.png" alt="Evento 6"></div>
               </div>
 
-              <!-- Slide 3 -->
               <div class="gallery-slide">
                 <div class="gallery-item"><img src="evento7.png" alt="Evento 7"></div>
                 <div class="gallery-item"><img src="evento8.png" alt="Evento 8"></div>
                 <div class="gallery-item"><img src="evento9.png" alt="Evento 9"></div>
               </div>
 
-              <!-- Slide 4 -->
               <div class="gallery-slide">
                 <div class="gallery-item"><img src="evento10.png" alt="Evento 10"></div>
                 <div class="gallery-item"><img src="evento11.png" alt="Evento 11"></div>
@@ -459,13 +513,48 @@
             </div>
           </div>
 
-          <button class="gallery-nav" id="galleryNext">&#10095;</button>
+          <button class="gallery-nav" id="galleryNext">❯</button>
         </div>
       </div>
 
     </section>
 
-    <!-- UBICACIÓN -->
+    <section class="sessions-section">
+      <div class="sessions-header">
+        <img src="LIVESESSION.png" class="sessions-logo" alt="Live Sessions Logo">
+        <h3 class="section-title">Sesiones Oficiales</h3>
+      </div>
+
+      <div class="sessions-grid">
+        
+        <a href="https://youtu.be/vVIP96Lq1Ak" target="_blank" class="session-item" data-vid="vVIP96Lq1Ak">
+  <img src="https://img.youtube.com/vi/vVIP96Lq1Ak/maxresdefault.jpg" class="session-thumb" alt="Sesión 1">
+  <iframe class="session-iframe" allow="autoplay; encrypted-media"></iframe>
+</a>
+
+        <a href="https://youtu.be/AIh1SkUzOZc" target="_blank" class="session-item" data-vid="AIh1SkUzOZc">
+  <img src="https://img.youtube.com/vi/AIh1SkUzOZc/maxresdefault.jpg" class="session-thumb" alt="Sesión 2">
+  <iframe class="session-iframe" allow="autoplay; encrypted-media"></iframe>
+</a>
+
+        <a href="https://youtu.be/D29XEhIl2II" target="_blank" class="session-item" data-vid="D29XEhIl2II">
+  <img src="https://img.youtube.com/vi/D29XEhIl2II/maxresdefault.jpg" class="session-thumb" alt="Sesión 3">
+  <iframe class="session-iframe" allow="autoplay; encrypted-media"></iframe>
+</a>
+
+<a href="https://youtu.be/AaovbGZs754" target="_blank" class="session-item" data-vid="AaovbGZs754">
+  <img src="https://img.youtube.com/vi/AaovbGZs754/maxresdefault.jpg" class="session-thumb" alt="Sesión 4">
+  <iframe class="session-iframe" allow="autoplay; encrypted-media"></iframe>
+</a>
+
+<a href="https://youtu.be/wjjo0t6-7Ak" target="_blank" class="session-item" data-vid="wjjo0t6-7Ak">
+  <img src="https://img.youtube.com/vi/wjjo0t6-7Ak/maxresdefault.jpg" class="session-thumb" alt="Sesión 5">
+  <iframe class="session-iframe" allow="autoplay; encrypted-media"></iframe>
+</a>
+
+      </div>
+    </section>
+
     <section class="location">
       <h3>Ubicación del Evento 30 DE MAYO</h3>
       <iframe
@@ -477,7 +566,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-title">Síguenos</div>
     <div class="social-footer">
@@ -488,19 +576,17 @@
         <img src="whatsapp.png" alt="WhatsApp">
       </a>
       <a href="https://www.facebook.com/share/1DqW5BVJxd/?mibextid=wwXIfr" target="_blank">
-        <img src="facebook.png" alt="Instagram">
+        <img src="facebook.png" alt="Facebook">
       </a>
       <a href="https://www.tiktok.com/@alamo.sclub" target="_blank">
         <img src="tiktok.png" alt="TikTok">
       </a>
-      </a>
       <a href="https://youtube.com/@alamosclub?si=X0A3BQeHMeENWmRX" target="_blank">
-        <img src="YOUTUBE.png" alt="TikTok">
+        <img src="YOUTUBE.png" alt="YouTube">
       </a>
     </div>
   </footer>
 
-  <!-- FIREBASE + LÓGICA -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
@@ -576,7 +662,7 @@
       }
     }, 1000);
 
-    // GALERÍA CARRUSEL (3 FOTOS POR VISTA, 4 SLIDES, LOOP)
+    // GALERÍA CARRUSEL
     const track = document.getElementById('galleryTrack');
     const slides = Array.from(track.querySelectorAll('.gallery-slide'));
     const prevBtn = document.getElementById('galleryPrev');
@@ -611,23 +697,20 @@
       const diff = endX - startX;
       if (Math.abs(diff) > 40) {
         if (diff < 0) {
-          // swipe izquierda -> siguiente
           currentSlide = (currentSlide + 1) % totalSlides;
         } else {
-          // swipe derecha -> anterior
           currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
         }
         updateGallery();
       }
     }, { passive: true });
 
-    // LÓGICA TEXTO SEGÚN "SESIÓN" O "EVENTO"
+    // LÓGICA TEXTO
     const registroContext = document.getElementById('registroContext');
     const infoRegistro = document.getElementById('infoRegistro');
 
     function actualizarInfoRegistro() {
       if (!registroContext || !infoRegistro) return;
-
       const texto = registroContext.textContent.toLowerCase();
 
       if (texto.includes('sesión') || texto.includes('sesion')) {
@@ -640,35 +723,50 @@
         infoRegistro.textContent = '';
       }
     }
-
-    // Ejecutar al cargar
     actualizarInfoRegistro();
+
     // LIGHTBOX FUNCIONALIDAD
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImg');
-const lightboxClose = document.getElementById('lightboxClose');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const galleryImages = document.querySelectorAll('.gallery-item img');
 
-// Detectar TODAS las imágenes de la galería
-const galleryImages = document.querySelectorAll('.gallery-item img');
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.classList.add('active');
+        lightboxImg.src = img.src;
+      });
+    });
 
-galleryImages.forEach(img => {
-  img.addEventListener('click', () => {
-    lightbox.classList.add('active');
-    lightboxImg.src = img.src;
-  });
-});
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
 
-// Cerrar al dar click en X
-lightboxClose.addEventListener('click', () => {
-  lightbox.classList.remove('active');
-});
+    lightbox.addEventListener('click', (e) => {
+      if (e.target !== lightboxImg) {
+        lightbox.classList.remove('active');
+      }
+    });
 
-// Cerrar al dar click fuera de la imagen
-lightbox.addEventListener('click', (e) => {
-  if (e.target !== lightboxImg) {
-    lightbox.classList.remove('active');
-  }
-});
+    // === NUEVO: LÓGICA DE REPRODUCCIÓN AL PASAR EL MOUSE ===
+    const sessionItems = document.querySelectorAll('.session-item');
+
+    sessionItems.forEach(item => {
+      const vidId = item.getAttribute('data-vid');
+      const iframe = item.querySelector('.session-iframe');
+      
+      item.addEventListener('mouseenter', () => {
+        // Carga y reproduce el video (silenciado) solo cuando el mouse pasa por encima
+        if (!iframe.src) {
+          iframe.src = `https://www.youtube.com/embed/${vidId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${vidId}`;
+        }
+      });
+
+      item.addEventListener('mouseleave', () => {
+        // Borra el enlace para detener el video al quitar el mouse
+        iframe.src = '';
+      });
+    });
   </script>
 
 </body>
