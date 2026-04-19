@@ -97,6 +97,7 @@
     .delay-2 { animation-delay: 0.2s; }
     .delay-3 { animation-delay: 0.3s; }
     .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
 
     @keyframes fadeUpAnim {
       to { opacity: 1; transform: translateY(0); }
@@ -135,7 +136,7 @@
     .menu-toggle:hover {
       transform: scale(1.1);
       opacity: 0.8;
-      background: none; /* Reset hover background from global button */
+      background: none;
     }
 
     .header-logo-right {
@@ -213,12 +214,6 @@
       animation: fadeUpAnim 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     }
 
-    /* Delays para los items del menú */
-    .menu-list li:nth-child(1) { animation-delay: 0.1s; }
-    .menu-list li:nth-child(2) { animation-delay: 0.2s; }
-    .menu-list li:nth-child(3) { animation-delay: 0.3s; }
-    .menu-list li:nth-child(4) { animation-delay: 0.4s; }
-
     .menu-link {
       text-decoration: none;
       color: var(--white);
@@ -289,19 +284,70 @@
       margin: 6px 0;
     }
 
-    /* FORM + GALERÍA LAYOUT */
-    .grid {
+    /* === NUEVO LAYOUT DE REGISTRO (FLYER + FORMULARIO) === */
+    .grid-registro {
       display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 30px;
-      margin-top: 30px;
+      grid-template-columns: 0.9fr 1.1fr; /* Flyer a la izq, Form a la der */
+      gap: 40px;
+      margin-top: 40px;
+      align-items: center; /* Centra el contenido verticalmente */
     }
 
     @media (max-width: 800px) {
-      .grid { grid-template-columns: 1fr; gap: 20px; }
+      .grid-registro { grid-template-columns: 1fr; gap: 30px; }
+    }
+
+    /* ANIMACIÓN Y ESTILO DEL FLYER */
+    .flyer-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Resplandor detrás del flyer */
+    .flyer-container::before {
+      content: '';
+      position: absolute;
+      top: 5%; left: 5%; right: 5%; bottom: 5%;
+      background: var(--aurora-1); /* Tonos neón */
+      filter: blur(40px);
+      z-index: -1;
+      border-radius: 20px;
+      animation: pulseFlyer 4s infinite alternate;
+    }
+
+    @keyframes pulseFlyer {
+      0% { opacity: 0.4; filter: blur(30px); }
+      100% { opacity: 0.8; filter: blur(50px); }
+    }
+
+    .event-flyer {
+      width: 100%;
+      max-width: 400px; /* Para que no se haga gigante en pantallas anchas */
+      height: auto;
+      border-radius: var(--radius);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255,255,255,0.15);
+      animation: floatFlyer 6s infinite alternate ease-in-out;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .event-flyer:hover {
+      transform: scale(1.02) translateY(-5px);
+      filter: brightness(1.1);
+    }
+
+    @keyframes floatFlyer {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-15px); }
     }
 
     /* FORMULARIO */
+    .form-card {
+      height: fit-content;
+    }
+
     .form-card h2 {
       margin: 0;
       font-size: 24px;
@@ -379,7 +425,11 @@
       text-align: center;
     }
 
-    /* GALERÍA / CARRUSEL */
+    /* === SECCIÓN GALERÍA AHORA ABAJO DEL REGISTRO === */
+    .galeria-section {
+      margin-top: 50px;
+    }
+
     .section-title {
       font-size: 14px;
       text-transform: uppercase;
@@ -469,7 +519,7 @@
 
     /* === SESIONES DE YOUTUBE === */
     .sessions-section {
-      margin-top: 40px;
+      margin-top: 50px;
     }
 
     .sessions-header {
@@ -555,7 +605,7 @@
 
     /* UBICACIÓN */
     .location {
-      margin-top: 40px;
+      margin-top: 50px;
       padding: 0;
       overflow: hidden;
     }
@@ -718,9 +768,13 @@
       </p>
     </section>
 
-    <section class="grid" id="registro">
+    <section class="grid-registro" id="registro">
 
-      <div class="form-card glass-card fade-up delay-2">
+      <div class="flyer-container fade-up delay-2">
+        <img src="Flyer1.png" alt="Flyer del Evento" class="event-flyer">
+      </div>
+
+      <div class="form-card glass-card fade-up delay-3">
         <h2>Registro</h2>
         <p id="registroContext" style="color:var(--muted); font-size:14px; margin:4px 0 12px;">
           Cupo limitado para el siguiente evento.
@@ -739,49 +793,49 @@
         <div id="closed">Registro cerrado.</div>
       </div>
 
-      <div class="fade-up delay-3" id="galeria">
-        <div class="section-title">Galería</div>
-
-        <div class="gallery-slider">
-          <button class="gallery-nav" id="galleryPrev">❮</button>
-
-          <div class="gallery-window">
-            <div class="gallery-track" id="galleryTrack">
-
-              <div class="gallery-slide">
-                <div class="gallery-item"><img src="evento1.png" alt="Evento 1"></div>
-                <div class="gallery-item"><img src="evento2.png" alt="Evento 2"></div>
-                <div class="gallery-item"><img src="evento3.png" alt="Evento 3"></div>
-              </div>
-
-              <div class="gallery-slide">
-                <div class="gallery-item"><img src="evento4.png" alt="Evento 4"></div>
-                <div class="gallery-item"><img src="evento5.png" alt="Evento 5"></div>
-                <div class="gallery-item"><img src="evento6.png" alt="Evento 6"></div>
-              </div>
-
-              <div class="gallery-slide">
-                <div class="gallery-item"><img src="evento7.png" alt="Evento 7"></div>
-                <div class="gallery-item"><img src="evento8.png" alt="Evento 8"></div>
-                <div class="gallery-item"><img src="evento9.png" alt="Evento 9"></div>
-              </div>
-
-              <div class="gallery-slide">
-                <div class="gallery-item"><img src="evento10.png" alt="Evento 10"></div>
-                <div class="gallery-item"><img src="evento11.png" alt="Evento 11"></div>
-                <div class="gallery-item"><img src="evento12.png" alt="Evento 12"></div>
-              </div>
-
-            </div>
-          </div>
-
-          <button class="gallery-nav" id="galleryNext">❯</button>
-        </div>
-      </div>
-
     </section>
 
-    <section class="sessions-section glass-card fade-up delay-4" id="live-session">
+    <section class="galeria-section glass-card fade-up delay-4" id="galeria">
+      <div class="section-title">Galería</div>
+
+      <div class="gallery-slider">
+        <button class="gallery-nav" id="galleryPrev">❮</button>
+
+        <div class="gallery-window">
+          <div class="gallery-track" id="galleryTrack">
+
+            <div class="gallery-slide">
+              <div class="gallery-item"><img src="evento1.png" alt="Evento 1"></div>
+              <div class="gallery-item"><img src="evento2.png" alt="Evento 2"></div>
+              <div class="gallery-item"><img src="evento3.png" alt="Evento 3"></div>
+            </div>
+
+            <div class="gallery-slide">
+              <div class="gallery-item"><img src="evento4.png" alt="Evento 4"></div>
+              <div class="gallery-item"><img src="evento5.png" alt="Evento 5"></div>
+              <div class="gallery-item"><img src="evento6.png" alt="Evento 6"></div>
+            </div>
+
+            <div class="gallery-slide">
+              <div class="gallery-item"><img src="evento7.png" alt="Evento 7"></div>
+              <div class="gallery-item"><img src="evento8.png" alt="Evento 8"></div>
+              <div class="gallery-item"><img src="evento9.png" alt="Evento 9"></div>
+            </div>
+
+            <div class="gallery-slide">
+              <div class="gallery-item"><img src="evento10.png" alt="Evento 10"></div>
+              <div class="gallery-item"><img src="evento11.png" alt="Evento 11"></div>
+              <div class="gallery-item"><img src="evento12.png" alt="Evento 12"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <button class="gallery-nav" id="galleryNext">❯</button>
+      </div>
+    </section>
+
+    <section class="sessions-section glass-card fade-up delay-5" id="live-session">
       <div class="sessions-header">
         <img src="LIVESESSION.png" class="sessions-logo" alt="Live Sessions Logo">
         <h3 class="section-title">Sesiones Oficiales</h3>
@@ -812,7 +866,7 @@
       </div>
     </section>
 
-    <section class="location glass-card fade-up delay-4">
+    <section class="location glass-card fade-up delay-5">
       <h3>Ubicación del Evento 30 DE MAYO</h3>
       <iframe
         class="map-frame"
@@ -1004,37 +1058,33 @@
       }
     });
 
-    // === NUEVO: LÓGICA DEL MENÚ ===
+    // LÓGICA DEL MENÚ
     const menuToggle = document.getElementById('menuToggle');
     const menuOverlay = document.getElementById('menuOverlay');
     const menuLinks = document.querySelectorAll('.menu-link');
 
-    // Función para abrir/cerrar
     function toggleMenu() {
       const isActive = menuOverlay.classList.contains('active');
       
       if (isActive) {
         menuOverlay.classList.remove('active');
         menuToggle.textContent = '☰';
-        document.body.style.overflow = ''; // Reactivar scroll de la página
+        document.body.style.overflow = '';
       } else {
         menuOverlay.classList.add('active');
-        menuToggle.textContent = '✕'; // Cambiar a X
-        document.body.style.overflow = 'hidden'; // Bloquear scroll de la página
+        menuToggle.textContent = '✕';
+        document.body.style.overflow = 'hidden';
       }
     }
 
     menuToggle.addEventListener('click', toggleMenu);
 
-    // Cerrar menú al hacer clic en un enlace y navegar
     menuLinks.forEach(link => {
       link.addEventListener('click', (e) => {
-        // Dejar que actúe el scroll behavior smooth nativo
-        toggleMenu(); // Cerrar el menú
+        toggleMenu();
       });
     });
 
-    // Cerrar menú si se hace clic fuera de la lista (en el overlay)
     menuOverlay.addEventListener('click', (e) => {
       if (e.target === menuOverlay) {
         toggleMenu();
