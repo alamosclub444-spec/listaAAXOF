@@ -966,7 +966,7 @@
           createdAt: serverTimestamp()
         });
 
-        alert('Registro guardado');
+        alert('Registro guardado, recuerda el nombre anotado, se te preguntara a la entrada.');
         form.reset();
 
       } catch (err) {
@@ -978,7 +978,7 @@
     // COUNTDOWN
     const countdownEl = document.getElementById('countdown');
     const closedEl = document.getElementById('closed');
-let endTime = new Date("APRIL 1, 2026 02:00:00").getTime();
+let endTime = new Date("MAY 1, 2026 14:00:00").getTime();
     setInterval(() => {
       const now = Date.now();
       const diff = endTime - now;
