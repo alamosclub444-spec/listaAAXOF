@@ -892,7 +892,7 @@
     </section>
 
     <section class="location glass-card fade-up delay-5">
-      <h3>Ubicación del Evento 30 DE MAYO</h3>
+      <h3>Evento 30 DE MAYO</h3>
       <iframe
         class="map-frame"
         src="https://www.google.com/maps/embed?pb=!4v1776562092931!6m8!1m7!1sYDjP-rWhR2cvMhYiiMbzZQ!2m2!1d19.44875194527009!2d-99.10989803476265!3f194.7909258245988!4f0.5320206120707951!5f0.7820865974627469" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
@@ -978,7 +978,7 @@
     // COUNTDOWN
     const countdownEl = document.getElementById('countdown');
     const closedEl = document.getElementById('closed');
-let endTime = new Date("MAY 1, 2026 14:00:00").getTime();
+let endTime = new Date("MAY 14, 2026 02:00:00").getTime();
     setInterval(() => {
       const now = Date.now();
       const diff = endTime - now;
@@ -1132,10 +1132,10 @@ function moveFlyer(index) {
 fNext.addEventListener('click', () => { moveFlyer(fIndex + 1); resetFlyerTimer(); });
 fPrev.addEventListener('click', () => { moveFlyer(fIndex - 1); resetFlyerTimer(); });
 
-let flyerAuto = setInterval(() => moveFlyer(fIndex + 1), 7000);
+let flyerAuto = setInterval(() => moveFlyer(fIndex + 1), 3000);
 function resetFlyerTimer() { 
     clearInterval(flyerAuto); 
-    flyerAuto = setInterval(() => moveFlyer(fIndex + 1), 7000); 
+    flyerAuto = setInterval(() => moveFlyer(fIndex + 1), 3000); 
 }
 
   </script>
