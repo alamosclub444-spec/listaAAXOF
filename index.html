@@ -3,24 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alamo's Club | Registro</title>
+  <title>Alamo's Club | HALLOWEEN </title>
 
   <style>
     :root {
-      --black: #050505;
+      --black: #0a0505; /* Un negro ligeramente más cálido/rojizo */
       --white: #ffffff;
-      --gray: #cfcfcf;
-      --border: rgba(255, 255, 255, 0.08);
-      --muted: #a0a0a0;
+      --gray: #b3b3b3;
+      --border: rgba(255, 100, 0, 0.15); /* Bordes con un toque naranja */
+      --muted: #8c8c8c;
       --radius: 16px;
-      /* Colores Aurora */
-      --aurora-1: rgba(0, 255, 213, 0.15); /* Verde/Cian neón sutil */
-      --aurora-2: rgba(100, 0, 255, 0.12); /* Morado profundo sutil */
-      --aurora-3: rgba(0, 100, 255, 0.1);  /* Azul sutil */
+      /* Colores Halloween */
+      --aurora-1: rgba(255, 102, 0, 0.2); /* Naranja Calabaza */
+      --aurora-2: rgba(128, 0, 255, 0.15); /* Morado Espectral */
+      --aurora-3: rgba(200, 0, 0, 0.15);  /* Rojo Sangre */
+      --accent: #ff6600; /* Color de acento principal */
     }
 
     html {
-      scroll-behavior: smooth; /* Desplazamiento suave nativo */
+      scroll-behavior: smooth;
     }
 
     body {
@@ -32,7 +33,7 @@
       overflow-x: hidden;
     }
 
-    /* === FONDO ANIMADO ESTILO AURORA BOREAL / MEDUSA === */
+    /* === FONDO ANIMADO ESTILO HALLOWEEN === */
     .bg-animation {
       position: fixed;
       top: 0;
@@ -42,7 +43,7 @@
       z-index: -2;
       overflow: hidden;
       pointer-events: none;
-      background: #000;
+      background: #050202; /* Fondo súper oscuro */
     }
     
     .aurora-stream {
@@ -50,7 +51,7 @@
       width: 150%;
       height: 60%;
       filter: blur(100px);
-      opacity: 0.6;
+      opacity: 0.7;
       border-radius: 50%;
       animation: auroraFlow 25s infinite alternate ease-in-out;
     }
@@ -103,46 +104,45 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* === HEADER GLASSMORPHISM (Sticky) === */
+    /* === HEADER GLASSMORPHISM === */
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 15px 30px;
-      background: rgba(5, 5, 5, 0.6);
+      background: rgba(10, 5, 5, 0.8);
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 4px 30px rgba(255, 102, 0, 0.1);
     }
 
-    /* ICONO MENÚ HAMBURGUESA */
     .menu-toggle {
       background: none;
       border: none;
-      color: var(--white);
+      color: var(--accent);
       font-size: 28px;
       cursor: pointer;
       padding: 0;
       width: auto;
       margin-top: 0;
-      box-shadow: none;
-      transition: transform 0.3s ease, opacity 0.3s ease;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
       z-index: 110;
     }
 
     .menu-toggle:hover {
       transform: scale(1.1);
-      opacity: 0.8;
-      background: none;
+      text-shadow: 0 0 10px var(--accent);
     }
 
     .header-logo-right {
       height: 65px;
       object-fit: contain;
       transition: transform 0.3s ease;
+      filter: drop-shadow(0 0 5px rgba(255,102,0,0.5));
     }
 
     .header-logo-right:hover {
@@ -159,27 +159,28 @@
       font-size: 20px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      font-weight: 700;
-      background: linear-gradient(90deg, #fff, #aaa);
+      font-weight: 800;
+      background: linear-gradient(90deg, #ff6600, #ff0000);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-shadow: 0px 0px 20px rgba(255,102,0,0.3);
     }
 
     @media (max-width: 700px) {
       header { padding: 12px 16px; }
       .menu-toggle { font-size: 24px; }
       .header-logo-right { height: 48px; }
-      .header-title { font-size: 15px; letter-spacing: 0.15em; }
+      .header-title { font-size: 14px; letter-spacing: 0.1em; }
     }
 
-    /* === MENÚ LATERAL DESPLEGABLE (OVERLAY) === */
+    /* === MENÚ LATERAL === */
     .menu-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.95);
+      background: rgba(10, 0, 0, 0.95);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       z-index: 105;
@@ -218,7 +219,7 @@
       text-decoration: none;
       color: var(--white);
       font-size: 28px;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       transition: all 0.3s ease;
@@ -232,14 +233,15 @@
       height: 2px;
       bottom: -5px;
       left: 50%;
-      background: #fff;
+      background: var(--accent);
       transition: all 0.3s ease;
       transform: translateX(-50%);
+      box-shadow: 0 0 10px var(--accent);
     }
 
     .menu-link:hover {
       letter-spacing: 0.15em;
-      opacity: 0.8;
+      color: var(--accent);
     }
 
     .menu-link:hover::after {
@@ -255,92 +257,48 @@
 
     /* === TARJETAS CRISTAL === */
     .glass-card {
-      background: rgba(15, 15, 15, 0.4);
+      background: rgba(20, 10, 10, 0.5);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255, 102, 0, 0.2);
       border-radius: var(--radius);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
       padding: 30px;
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
 
     .glass-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 12px 40px rgba(255, 102, 0, 0.15);
+      border-color: rgba(255, 102, 0, 0.4);
     }
 
     /* BLOQUE: DESCRIPCIÓN */
     .about-title {
       font-size: 28px;
       margin: 0 0 12px;
-      font-weight: 600;
+      font-weight: 700;
+      color: var(--accent);
+      text-shadow: 0 0 15px rgba(255,102,0,0.3);
     }
 
     .about-text {
-      color: var(--muted);
+      color: var(--gray);
       font-size: 16px;
       margin: 6px 0;
     }
 
-    /* === NUEVO LAYOUT DE REGISTRO (FLYER + FORMULARIO) === */
+    /* === LAYOUT REGISTRO === */
     .grid-registro {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr; /* Flyer a la izq, Form a la der */
+      grid-template-columns: 0.9fr 1.1fr;
       gap: 40px;
       margin-top: 40px;
-      align-items: center; /* Centra el contenido verticalmente */
+      align-items: center;
     }
 
     @media (max-width: 800px) {
       .grid-registro { grid-template-columns: 1fr; gap: 30px; }
-    }
-
-    /* ANIMACIÓN Y ESTILO DEL FLYER */
-    .flyer-container {
-      position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-
-    /* Resplandor detrás del flyer */
-    .flyer-container::before {
-      content: '';
-      position: absolute;
-      top: 5%; left: 5%; right: 5%; bottom: 5%;
-      background: var(--aurora-1); /* Tonos neón */
-      filter: blur(40px);
-      z-index: -1;
-      border-radius: 20px;
-      animation: pulseFlyer 4s infinite alternate;
-    }
-
-    @keyframes pulseFlyer {
-      0% { opacity: 0.4; filter: blur(30px); }
-      100% { opacity: 0.8; filter: blur(50px); }
-    }
-
-    .event-flyer {
-      width: 100%;
-      max-width: 400px; /* Para que no se haga gigante en pantallas anchas */
-      height: auto;
-      border-radius: var(--radius);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
-      border: 1px solid rgba(255,255,255,0.15);
-      animation: floatFlyer 6s infinite alternate ease-in-out;
-      transition: transform 0.4s ease, filter 0.4s ease;
-    }
-
-    .event-flyer:hover {
-      transform: scale(1.02) translateY(-5px);
-      filter: brightness(1.1);
-    }
-
-    @keyframes floatFlyer {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-15px); }
     }
 
     /* FORMULARIO */
@@ -351,24 +309,26 @@
     .form-card h2 {
       margin: 0;
       font-size: 24px;
+      color: var(--white);
     }
 
     label {
       font-size: 13px;
-      color: var(--muted);
+      color: var(--accent);
       margin-top: 20px;
       display: block;
       margin-bottom: 8px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      font-weight: 600;
     }
 
     input {
       width: 100%;
       padding: 14px 16px;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 102, 0, 0.3);
+      background: rgba(0, 0, 0, 0.6);
       color: var(--white);
       font-size: 15px;
       outline: none;
@@ -377,9 +337,9 @@
     }
 
     input:focus {
-      border-color: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
-      background: rgba(20, 20, 20, 0.8);
+      border-color: var(--accent);
+      box-shadow: 0 0 15px rgba(255, 102, 0, 0.2);
+      background: rgba(20, 10, 10, 0.9);
     }
 
     button {
@@ -388,55 +348,57 @@
       margin-top: 24px;
       border-radius: 12px;
       border: none;
-      background: linear-gradient(135deg, #ffffff 0%, #d4d4d4 100%);
-      color: var(--black);
-      font-weight: 700;
+      background: linear-gradient(135deg, #ff6600 0%, #cc0000 100%);
+      color: var(--white);
+      font-weight: 800;
       font-size: 16px;
       cursor: pointer;
       transition: all 0.3s ease;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+      letter-spacing: 0.1em;
+      box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
     }
 
     button:hover {
       transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
-      background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+      box-shadow: 0 8px 25px rgba(255, 102, 0, 0.5);
+      background: linear-gradient(135deg, #ff8533 0%, #e60000 100%);
     }
 
     #countdown {
       margin-top: 15px;
-      color: #fff;
+      color: #ffcc00;
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 600;
       text-align: center;
-      background: rgba(255,255,255,0.04);
-      padding: 8px;
+      background: rgba(255, 102, 0, 0.1);
+      padding: 10px;
       border-radius: 8px;
+      border: 1px dashed rgba(255,102,0,0.3);
     }
 
     #closed {
       display: none;
       margin-top: 14px;
-      color: #ff4d4d;
+      color: #ff3333;
       font-size: 15px;
       font-weight: bold;
       text-align: center;
+      text-shadow: 0 0 5px rgba(255,0,0,0.5);
     }
 
-    /* === SECCIÓN GALERÍA AHORA ABAJO DEL REGISTRO === */
+    /* === GALERÍA === */
     .galeria-section {
       margin-top: 50px;
     }
 
     .section-title {
-      font-size: 14px;
+      font-size: 16px;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       margin: 0 0 15px;
-      color: var(--gray);
-      font-weight: 600;
+      color: var(--accent);
+      font-weight: 700;
     }
 
     .gallery-slider {
@@ -446,9 +408,9 @@
     }
 
     .gallery-nav {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      color: var(--white);
+      background: rgba(255, 102, 0, 0.1);
+      border: 1px solid var(--accent);
+      color: var(--accent);
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -465,9 +427,10 @@
     }
 
     .gallery-nav:hover {
-      background: var(--white);
-      color: var(--black);
+      background: var(--accent);
+      color: var(--white);
       transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(255,102,0,0.4);
     }
 
     .gallery-window {
@@ -491,7 +454,7 @@
       flex: 1;
       border-radius: 10px;
       overflow: hidden;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255, 102, 0, 0.2);
       background: #000;
       position: relative;
     }
@@ -506,14 +469,14 @@
 
     .gallery-item:hover img {
       transform: scale(1.08);
-      filter: brightness(1.2);
+      filter: brightness(1.1) sepia(0.3) hue-rotate(-15deg);
     }
 
     .gallery-item::after {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.5) 100%);
+      background: radial-gradient(circle, transparent 50%, rgba(20,0,0,0.6) 100%);
       pointer-events: none;
     }
 
@@ -534,13 +497,13 @@
       height: 90px;
       object-fit: contain;
       margin-bottom: 15px;
-      filter: drop-shadow(0 0 10px rgba(255,255,255,0.15));
+      filter: drop-shadow(0 0 10px rgba(255,102,0,0.4));
       animation: pulseGlow 4s infinite alternate ease-in-out;
     }
 
     @keyframes pulseGlow {
-      0% { filter: drop-shadow(0 0 5px rgba(255,255,255,0.1)); }
-      100% { filter: drop-shadow(0 0 20px rgba(255,255,255,0.25)); }
+      0% { filter: drop-shadow(0 0 5px rgba(255,0,0,0.3)); }
+      100% { filter: drop-shadow(0 0 25px rgba(255,102,0,0.6)); }
     }
 
     .sessions-grid {
@@ -549,23 +512,41 @@
       gap: 24px;
     }
 
+    /* NUEVO: Estilo para iframes embedidos */
+    .session-iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      border: 1px solid rgba(255,102,0,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .session-iframe:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255,102,0,0.2);
+      border-color: var(--accent);
+    }
+
+    /* Estilo para links en miniatura (los que ya tenías) */
     .session-item {
       position: relative;
       display: block;
       border-radius: 12px;
       overflow: hidden;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255,102,0,0.2);
       aspect-ratio: 16/9;
       background: #000;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.8);
       transition: all 0.3s ease;
     }
 
     .session-item:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.2);
+      box-shadow: 0 10px 25px rgba(255,102,0,0.2);
+      border-color: var(--accent);
     }
 
     .session-thumb {
@@ -580,7 +561,7 @@
 
     .session-item:hover .session-thumb {
       transform: scale(1.05);
-      filter: brightness(1.1);
+      filter: brightness(1.1) contrast(1.2);
     }
 
     .session-item::before {
@@ -590,9 +571,9 @@
       left: 50%;
       transform: translate(-50%, -50%) scale(0.8);
       font-size: 40px;
-      color: rgba(255,255,255,0.8);
+      color: var(--accent);
       z-index: 5;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      text-shadow: 0 0 15px rgba(255,0,0,0.8);
       opacity: 0;
       transition: all 0.3s ease;
       pointer-events: none;
@@ -614,6 +595,7 @@
       margin: 0;
       font-size: 18px;
       padding: 22px 22px 12px;
+      color: var(--accent);
     }
 
     .map-frame {
@@ -621,31 +603,31 @@
       height: 300px;
       border: none;
       display: block;
-      filter: grayscale(80%) contrast(1.2);
-      transition: filter 0.3s ease;
+      filter: grayscale(90%) sepia(20%) hue-rotate(-20deg) contrast(1.2) brightness(0.8);
+      transition: filter 0.5s ease;
     }
 
     .map-frame:hover {
-      filter: grayscale(0%) contrast(1);
+      filter: grayscale(40%) sepia(30%) hue-rotate(-20deg) contrast(1.2);
     }
 
     /* FOOTER */
     footer {
       padding: 50px 20px;
       margin-top: 50px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid rgba(255,102,0,0.2);
       text-align: center;
       color: var(--muted);
-      background: rgba(0,0,0,0.4);
+      background: linear-gradient(to top, rgba(20,0,0,0.8), transparent);
     }
 
     .footer-title {
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-bottom: 20px;
-      color: #fff;
+      color: var(--accent);
     }
 
     .social-footer {
@@ -661,13 +643,13 @@
       height: auto;
       opacity: 0.6;
       transition: all 0.3s ease;
-      filter: grayscale(100%);
+      filter: grayscale(100%) sepia(1) hue-rotate(-30deg) saturate(3);
     }
 
     .social-footer a:hover img {
       opacity: 1;
       transform: scale(1.15) translateY(-3px);
-      filter: grayscale(0%);
+      filter: drop-shadow(0 0 10px var(--accent));
     }
 
     /* LIGHTBOX */
@@ -677,7 +659,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.96);
+      background: rgba(10,0,0,0.96);
       backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
@@ -697,7 +679,7 @@
       max-width: 90%;
       max-height: 85%;
       border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      box-shadow: 0 10px 40px rgba(255,102,0,0.3);
       transform: scale(0.9);
       transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
@@ -711,28 +693,28 @@
       top: 30px;
       right: 40px;
       font-size: 40px;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,102,0,0.6);
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
     .lightbox-close:hover {
-      color: #fff;
-      transform: rotate(90deg);
+      color: var(--accent);
+      transform: rotate(90deg) scale(1.1);
     }
 
-    /* ESTILOS DEL NUEVO CARRETE */
-.flyer-slider-container { position: relative; width: 100%; max-width: 400px; margin: auto; z-index: 1; }
-.flyer-slider-container::before { content: ''; position: absolute; top: 5%; left: 5%; right: 5%; bottom: 5%; background: var(--aurora-1); filter: blur(40px); z-index: -1; border-radius: 20px; animation: pulseFlyer 4s infinite alternate; }
-.flyer-window { width: 100%; overflow: hidden; border-radius: var(--radius); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7); border: 1px solid rgba(255,255,255,0.15); animation: floatFlyer 6s infinite alternate ease-in-out; }
-.flyer-track { display: flex; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
-.flyer-track img { width: 100%; flex-shrink: 0; display: block; object-fit: cover; }
-.flyer-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 18px; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
-.flyer-nav:hover { background: white; color: black; }
-.flyer-prev { left: 10px; }
-.flyer-next { right: 10px; }
-@keyframes floatFlyer { 0% { transform: translateY(0); } 100% { transform: translateY(-15px); } }
-@keyframes pulseFlyer { 0% { opacity: 0.4; filter: blur(30px); } 100% { opacity: 0.8; filter: blur(50px); } }
+    /* CARRETE FLYER */
+    .flyer-slider-container { position: relative; width: 100%; max-width: 400px; margin: auto; z-index: 1; }
+    .flyer-slider-container::before { content: ''; position: absolute; top: 5%; left: 5%; right: 5%; bottom: 5%; background: var(--aurora-1); filter: blur(40px); z-index: -1; border-radius: 20px; animation: pulseFlyer 4s infinite alternate; }
+    .flyer-window { width: 100%; overflow: hidden; border-radius: var(--radius); box-shadow: 0 15px 35px rgba(20, 0, 0, 0.9); border: 1px solid rgba(255,102,0,0.3); animation: floatFlyer 6s infinite alternate ease-in-out; }
+    .flyer-track { display: flex; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+    .flyer-track img { width: 100%; flex-shrink: 0; display: block; object-fit: cover; }
+    .flyer-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,102,0,0.2); color: var(--accent); border: 1px solid var(--accent); width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 18px; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+    .flyer-nav:hover { background: var(--accent); color: #000; box-shadow: 0 0 10px var(--accent); }
+    .flyer-prev { left: 10px; }
+    .flyer-next { right: 10px; }
+    @keyframes floatFlyer { 0% { transform: translateY(0); } 100% { transform: translateY(-15px); } }
+    @keyframes pulseFlyer { 0% { opacity: 0.4; filter: blur(30px); } 100% { opacity: 0.8; filter: blur(60px); } }
 
   </style>
 </head>
@@ -763,7 +745,7 @@
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
     
     <div class="header-center">
-      <div class="header-title">ALAMO'S CLUB</div>
+      <div class="header-title">ALAMO'S CLUB - HALLOWEEN</div>
     </div>
     
     <img src="LOGO.PNG" class="header-logo-right" alt="Alamo's Club logo derecha">
@@ -784,20 +766,17 @@
 
     <section class="grid-registro" id="registro">
 
-      <!-- NUEVO CARRETE DE FLYER / ANUNCIOS -->
-<div class="flyer-slider-container fade-up delay-2">
-  <button class="flyer-nav flyer-prev" id="flyerPrev">❮</button>
-  <div class="flyer-window">
-    <div class="flyer-track" id="flyerTrack">
-      <!-- IMAGEN PRINCIPAL -->
-      <img src="Flyer1.png" alt="Flyer Evento">
-      <!-- TUS ANUNCIOS EXTRAS -->
-      <img src="Anuncio1.png" alt="Anuncio 1">
-      <img src="Anuncio2.png" alt="Anuncio 2">
-    </div>
-  </div>
-  <button class="flyer-nav flyer-next" id="flyerNext">❯</button>
-</div>
+      <div class="flyer-slider-container fade-up delay-2">
+        <button class="flyer-nav flyer-prev" id="flyerPrev">❮</button>
+        <div class="flyer-window">
+          <div class="flyer-track" id="flyerTrack">
+            <img src="Flyer1.png" alt="Flyer Evento">
+            <img src="Anuncio1.png" alt="Anuncio 1">
+            <img src="Anuncio2.png" alt="Anuncio 2">
+          </div>
+        </div>
+        <button class="flyer-nav flyer-next" id="flyerNext">❯</button>
+      </div>
 
       <div class="form-card glass-card fade-up delay-3">
         <h2>Registro</h2>
@@ -830,15 +809,15 @@
           <div class="gallery-track" id="galleryTrack">
 
             <div class="gallery-slide">
-              <div class="gallery-item"><img src="evento1.png" alt="Evento 1"></div>
-              <div class="gallery-item"><img src="evento2.png" alt="Evento 2"></div>
-              <div class="gallery-item"><img src="evento3.png" alt="Evento 3"></div>
+              <div class="gallery-item"><img src="1.png" alt="Evento 1"></div>
+              <div class="gallery-item"><img src="2.png" alt="Evento 2"></div>
+              <div class="gallery-item"><img src="3.png" alt="Evento 3"></div>
             </div>
 
             <div class="gallery-slide">
-              <div class="gallery-item"><img src="evento4.png" alt="Evento 4"></div>
-              <div class="gallery-item"><img src="evento5.png" alt="Evento 5"></div>
-              <div class="gallery-item"><img src="evento6.png" alt="Evento 6"></div>
+              <div class="gallery-item"><img src="4.png" alt="Evento 4"></div>
+              <div class="gallery-item"><img src="5.png" alt="Evento 5"></div>
+              <div class="gallery-item"><img src="6.png" alt="Evento 6"></div>
             </div>
 
             <div class="gallery-slide">
@@ -860,6 +839,7 @@
       </div>
     </section>
 
+    
     <section class="sessions-section glass-card fade-up delay-5" id="live-session">
       <div class="sessions-header">
         <img src="LIVESESSION.png" class="sessions-logo" alt="Live Sessions Logo">
@@ -868,34 +848,29 @@
 
       <div class="sessions-grid">
         
-        <a href="https://youtu.be/vVIP96Lq1Ak" target="_blank" class="session-item">
-          <img src="https://img.youtube.com/vi/vVIP96Lq1Ak/maxresdefault.jpg" class="session-thumb" alt="Sesión 1">
+        <!-- Video 1 -->
+        <a href="https://youtu.be/oh3FEfKPF6g" target="_blank" class="session-item">
+          <img src="https://img.youtube.com/vi/oh3FEfKPF6g/maxresdefault.jpg" class="session-thumb" alt="Sesión 1">
         </a>
 
-        <a href="https://youtu.be/AIh1SkUzOZc" target="_blank" class="session-item">
-          <img src="https://img.youtube.com/vi/AIh1SkUzOZc/maxresdefault.jpg" class="session-thumb" alt="Sesión 2">
+        <!-- Video 2 -->
+        <a href="https://youtu.be/agF-PEum-iQ" target="_blank" class="session-item">
+          <img src="https://img.youtube.com/vi/agF-PEum-iQ/maxresdefault.jpg" class="session-thumb" alt="Sesión 2">
         </a>
 
-        <a href="https://youtu.be/D29XEhIl2II" target="_blank" class="session-item">
-          <img src="https://img.youtube.com/vi/D29XEhIl2II/maxresdefault.jpg" class="session-thumb" alt="Sesión 3">
-        </a>
-
-        <a href="https://youtu.be/AaovbGZs754" target="_blank" class="session-item">
-          <img src="https://img.youtube.com/vi/AaovbGZs754/maxresdefault.jpg" class="session-thumb" alt="Sesión 4">
-        </a>
-
-        <a href="https://youtu.be/wjjo0t6-7Ak" target="_blank" class="session-item">
-          <img src="https://img.youtube.com/vi/wjjo0t6-7Ak/maxresdefault.jpg" class="session-thumb" alt="Sesión 5">
+        <!-- Video 3 -->
+        <a href="https://youtu.be/CRI5C9P7bVA" target="_blank" class="session-item">
+          <img src="https://img.youtube.com/vi/CRI5C9P7bVA/maxresdefault.jpg" class="session-thumb" alt="Sesión 3">
         </a>
 
       </div>
     </section>
 
     <section class="location glass-card fade-up delay-5">
-      <h3>Evento 30 DE MAYO</h3>
+      <h3>Evento 30 DE OCTUBRE</h3>
       <iframe
         class="map-frame"
-        src="https://www.google.com/maps/embed?pb=!4v1776562092931!6m8!1m7!1sYDjP-rWhR2cvMhYiiMbzZQ!2m2!1d19.44875194527009!2d-99.10989803476265!3f194.7909258245988!4f0.5320206120707951!5f0.7820865974627469" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        src="https://www.google.com/maps/embed?pb=!3m2!1ses!2smx!4v1792914602631!5m2!1ses!2smx!6m8!1m7!1sDFPu9CwEUfgOPosFPp2sSQ!2m2!1d19.43607875120359!2d-99.10335333060137!3f29.445984850647925!4f2.973138387257052!5f0.7820865974627469" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
       </iframe>
     </section>
 
@@ -978,7 +953,8 @@
     // COUNTDOWN
     const countdownEl = document.getElementById('countdown');
     const closedEl = document.getElementById('closed');
-let endTime = new Date("MAY 14, 2026 02:00:00").getTime();
+    let endTime = new Date("OCT 27, 2026 02:00:00").getTime();
+    
     setInterval(() => {
       const now = Date.now();
       const diff = endTime - now;
@@ -1005,6 +981,7 @@ let endTime = new Date("MAY 14, 2026 02:00:00").getTime();
     let currentSlide = 0;
 
     function updateGallery() {
+      // CORRECCIÓN: el símbolo de multiplicar (*) ya está colocado correctamente
       track.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
 
@@ -1116,27 +1093,29 @@ let endTime = new Date("MAY 14, 2026 02:00:00").getTime();
     });
 
     // --- LÓGICA DEL CARRETE AUTOMÁTICO (7 SEGUNDOS) ---
-const fTrack = document.getElementById('flyerTrack');
-const fImages = fTrack.querySelectorAll('img');
-const fPrev = document.getElementById('flyerPrev');
-const fNext = document.getElementById('flyerNext');
-let fIndex = 0;
+    const fTrack = document.getElementById('flyerTrack');
+    const fImages = fTrack.querySelectorAll('img');
+    const fPrev = document.getElementById('flyerPrev');
+    const fNext = document.getElementById('flyerNext');
+    let fIndex = 0;
 
-function moveFlyer(index) {
-    if (index >= fImages.length) fIndex = 0;
-    else if (index < 0) fIndex = fImages.length - 1;
-    else fIndex = index;
-    fTrack.style.transform = `translateX(-${fIndex * 100}%)`;
-}
+    function moveFlyer(index) {
+        if (index >= fImages.length) fIndex = 0;
+        else if (index < 0) fIndex = fImages.length - 1;
+        else fIndex = index;
+        
+        // CORRECCIÓN: el símbolo de multiplicar (*) ya está colocado correctamente
+        fTrack.style.transform = `translateX(-${fIndex * 100}%)`;
+    }
 
-fNext.addEventListener('click', () => { moveFlyer(fIndex + 1); resetFlyerTimer(); });
-fPrev.addEventListener('click', () => { moveFlyer(fIndex - 1); resetFlyerTimer(); });
+    fNext.addEventListener('click', () => { moveFlyer(fIndex + 1); resetFlyerTimer(); });
+    fPrev.addEventListener('click', () => { moveFlyer(fIndex - 1); resetFlyerTimer(); });
 
-let flyerAuto = setInterval(() => moveFlyer(fIndex + 1), 3000);
-function resetFlyerTimer() { 
-    clearInterval(flyerAuto); 
-    flyerAuto = setInterval(() => moveFlyer(fIndex + 1), 3000); 
-}
+    let flyerAuto = setInterval(() => moveFlyer(fIndex + 1), 3000);
+    function resetFlyerTimer() { 
+        clearInterval(flyerAuto); 
+        flyerAuto = setInterval(() => moveFlyer(fIndex + 1), 3000); 
+    }
 
   </script>
 
